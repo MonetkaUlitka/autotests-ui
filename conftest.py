@@ -7,7 +7,7 @@ from playwright.sync_api import sync_playwright
 def browser():
     with sync_playwright() as p:
         # Запускаем браузер (headless=False показывает окно)
-        browser = p.chromium.launch(headless=False, slow_mo=800)
+        browser = p.chromium.launch(headless=False)
         yield browser
         browser.close()
 
