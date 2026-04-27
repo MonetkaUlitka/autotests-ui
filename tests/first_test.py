@@ -28,3 +28,10 @@ def test_login_error(page: Page):
 
     # Пауза на 5 секунд, чтобы увидеть результат
     # page.wait_for_timeout(5000)
+
+
+def test_hover_registration_link(page:Page):
+    page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login")
+
+    registrstion_link = page.get_by_test_id('login-page-registration-link')
+    registrstion_link.hover()
