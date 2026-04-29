@@ -1,6 +1,6 @@
 from playwright.sync_api import Page, expect
 
-def test_succses_registration(page:Page):
+def test_succses_registration(page:Page, context):
     page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
 
     email_input = page.get_by_test_id('registration-form-email-input').locator('input')
@@ -15,25 +15,10 @@ def test_succses_registration(page:Page):
     registration_button = page.get_by_test_id('registration-page-registration-button')
     registration_button.click()
 
+    context.storage_state(path="browser-state.json")
+
+
     dashboard_header = page.get_by_test_id('dashboard-toolbar-title-text')
 
     expect(dashboard_header).to_be_visible()
     expect(dashboard_header).to_have_text('Dashboard')
-
-
-def test_disabled_registration_button(page:Page):
-    page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
-
-    registration_button = page.get_by_test_id('registration-page-registration-button')
-    expect(registration_button).to_be_disabled()
-
-    email_input = page.get_by_test_id('registration-form-email-input').locator('input')
-    email_input.fill('user.name@gmail.com')
-
-    username_input = page.get_by_test_id('registration-form-username-input').locator('input')
-    username_input.fill('username')
-
-    password_input = page.get_by_test_id('registration-form-password-input').locator('input')
-    password_input.fill('password')
-
-    expect(registration_button).not_to_be_disabled()
