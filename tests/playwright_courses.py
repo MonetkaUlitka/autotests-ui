@@ -21,6 +21,7 @@ def test_registration(page:Page, context):
 
     courses_header = page.get_by_test_id('courses-list-toolbar-title-text')
     courses_text = page.get_by_test_id('courses-list-empty-view-title-text')
+    icon = page.get_by_test_id('courses-list-empty-view-icon')
 
     context.storage_state(path='browser-state.json')
 
@@ -28,6 +29,7 @@ def test_registration(page:Page, context):
     expect(courses_header).to_have_text('Courses')
     expect(courses_text).to_be_visible()
     expect(courses_text).to_have_text('There is no results')
+    expect(icon).to_be_visible()
 
 
 
