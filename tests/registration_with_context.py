@@ -22,3 +22,9 @@ def test_succses_registration(page:Page, context):
 
     expect(dashboard_header).to_be_visible()
     expect(dashboard_header).to_have_text('Dashboard')
+
+
+
+def test_open_dashboard_page(page:Page, context):
+    page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard')
+    context.storage_state(path="browser-state.json")
