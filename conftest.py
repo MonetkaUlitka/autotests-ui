@@ -1,21 +1,21 @@
 import pytest
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright #, Browser, BrowserContext, Page
 
 @pytest.fixture(scope="session")
-def browser():
+def browser(): # -> Browser:
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False, slow_mo=800)
+        browser = p.chromium.launch(headless=False)
         yield browser
         browser.close()
 
 @pytest.fixture
-def context(browser):
+def context(browser): # -> BrowserContext:
     context = browser.new_context()
     yield context
     context.close()
 
 @pytest.fixture
-def page(context):
+def page(context): # -> Page:
     page = context.new_page()
     yield page
     page.close()
