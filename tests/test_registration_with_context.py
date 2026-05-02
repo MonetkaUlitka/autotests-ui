@@ -1,5 +1,8 @@
 from playwright.sync_api import Page, expect
+import pytest
 
+@pytest.mark.regression
+@pytest.mark.registration
 def test_succses_registration(page:Page, context):
     page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
 
@@ -24,7 +27,7 @@ def test_succses_registration(page:Page, context):
     expect(dashboard_header).to_have_text('Dashboard')
 
 
-
+@pytest.mark.smoke
 def test_open_dashboard_page(page:Page, context, browser):
     context = browser.new_context(storage_state="browser-state.json")
     page = context.new_page()
