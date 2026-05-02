@@ -1,6 +1,9 @@
 from playwright.sync_api import Page, expect 
+import pytest
 
 # Запуск Playwright в синхронном режиме
+
+@pytest.mark.regression
 def test_login_error(page: Page): 
     # # Открываем браузер Chromium (не в headless режиме, чтобы видеть действия)
     # browser = playwright.chromium.launch(headless=False)
@@ -29,7 +32,7 @@ def test_login_error(page: Page):
     # Пауза на 5 секунд, чтобы увидеть результат
     # page.wait_for_timeout(5000)
 
-
+@pytest.mark.smoke
 def test_hover_registration_link(page:Page):
     page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login")
 

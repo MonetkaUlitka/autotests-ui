@@ -25,6 +25,14 @@ def test_succses_registration(page:Page, context):
 
 
 
-def test_open_dashboard_page(page:Page, context):
+def test_open_dashboard_page(page:Page, context, browser):
+    context = browser.new_context(storage_state="browser-state.json")
+    page = context.new_page()
+
     page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard')
-    context.storage_state(path="browser-state.json")
+   
+    dashboard_header = page.get_by_test_id('dashboard-toolbar-title-text')
+
+    expect(dashboard_header).to_be_visible()
+    expect(dashboard_header).to_have_text('Dashboard')
+

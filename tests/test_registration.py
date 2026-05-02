@@ -1,5 +1,7 @@
 from playwright.sync_api import Page, expect
+import pytest
 
+@pytest.mark.regression
 def test_succses_registration(page:Page):
     page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
 
@@ -20,7 +22,7 @@ def test_succses_registration(page:Page):
     expect(dashboard_header).to_be_visible()
     expect(dashboard_header).to_have_text('Dashboard')
 
-
+@pytest.mark.smoke
 def test_disabled_registration_button(page:Page):
     page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
 
