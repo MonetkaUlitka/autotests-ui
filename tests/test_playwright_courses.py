@@ -1,6 +1,10 @@
 from playwright.sync_api import Page, expect 
+import pytest 
 
-def test_registration(page:Page, context):
+
+@pytest.mark.regression
+@pytest.mark.courses
+def test_empty_courses_list(page:Page, context):
     page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
 
     email_input= page.get_by_test_id('registration-form-email-input').locator('input')
