@@ -50,3 +50,12 @@ Thumbs.db
 # Логи и базы данных (если используешь локально)
 *.log
 *.sqlite3
+
+
+
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.dist-info/
+site-packages/
