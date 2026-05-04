@@ -41,3 +41,16 @@ class TestOperations:
     # Аналогично тут передается "user"
     def test_user_without_operations(self, user: str):
         print(f"User without operations: {user}")
+
+# С использованием идентификатора
+@pytest.mark.parametrize(
+    "phone_number",
+    ["+70000000011", "+70000000022", "+70000000033"],
+    ids=[
+        "User with money on bank account",
+        "User without money on bank account",
+        "User with operations on bank account"
+    ]
+)
+def test_identifiers(phone_number: str):
+    pass
