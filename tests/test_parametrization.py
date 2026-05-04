@@ -1,4 +1,5 @@
 import pytest 
+from _pytest.fixtures import SubRequest
 
 @pytest.mark.parametrize("number", [1, 2, 3, -1])  # Параметризируем тест
 # Название "number" в декораторе "parametrize" и в аргументах автотеста должны совпадать
@@ -13,3 +14,17 @@ def test_several_numbers(number: int, expected:int):
 @pytest.mark.parametrize("browser", ["chromium", "webkit", "firefox"])  # Параметризируем по браузеру
 def test_multiplication_of_numbers(os: str, browser: str):
     assert len(os + browser) > 0  # Проверка указана для примера
+
+
+
+@pytest.fixture(params=["chromium", "webkit", "firefox"])
+# Фикстура будет возвращать три разных браузера
+# Соотвественно все автотесты использующие данную фикстуру будут запускаться три раза
+def browser(request: SubRequest) -> str:
+    return request.param  # Внутри атрибута param находится одно из значений "chromium", "webkit", "firefox"
+
+
+# В самом автотесте уже не нужно добавлять параметризацию, он будет автоматически параметризован из фикстуры
+def test_open_browser(browser: str):
+    # Используем фикстуру в автотесте, она вернет нам браузер в виде строки
+    print(f"Running test on browser: {browser}")
