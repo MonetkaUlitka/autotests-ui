@@ -33,6 +33,7 @@ def test_open_browser(browser: str):
 # Для тестовых классов параметризациф указывается для самого класса
 @pytest.mark.parametrize("user", ["Alice", "Zara"])
 class TestOperations:
+    @pytest.mark.parametrize("account", ["Credit card", "Debit card"])
     # Параметр "user" передается в качестве аргумента в каждый тестовый метод класса
     def test_user_with_operations(self, user: str):
         print(f"User with operations: {user}")
