@@ -28,3 +28,15 @@ def browser(request: SubRequest) -> str:
 def test_open_browser(browser: str):
     # Используем фикстуру в автотесте, она вернет нам браузер в виде строки
     print(f"Running test on browser: {browser}")
+
+
+# Для тестовых классов параметризациф указывается для самого класса
+@pytest.mark.parametrize("user", ["Alice", "Zara"])
+class TestOperations:
+    # Параметр "user" передается в качестве аргумента в каждый тестовый метод класса
+    def test_user_with_operations(self, user: str):
+        print(f"User with operations: {user}")
+
+    # Аналогично тут передается "user"
+    def test_user_without_operations(self, user: str):
+        print(f"User without operations: {user}")
