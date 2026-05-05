@@ -35,11 +35,11 @@ def test_open_browser(browser: str):
 class TestOperations:
     @pytest.mark.parametrize("account", ["Credit card", "Debit card"])
     # Параметр "user" передается в качестве аргумента в каждый тестовый метод класса
-    def test_user_with_operations(self, user: str):
+    def test_user_with_operations(self, user: str, account:str):
         print(f"User with operations: {user}")
 
     # Аналогично тут передается "user"
-    def test_user_without_operations(self, user: str):
+    def test_user_without_operations(self, user: str, account:str):
         print(f"User without operations: {user}")
 
 # С использованием идентификатора
