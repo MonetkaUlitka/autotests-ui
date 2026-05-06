@@ -20,7 +20,7 @@ class LoginPage(BasePage):
         expect(self.password_input).to_have_value(password)
 
     def click_login_button(self):
-        self.registration_link.click()
+        self.login_button.click()
 
     def check_visible_wrong_email_or_password(self):
         expect(self.wrong_email_or_password_alert).to_be_visible()
