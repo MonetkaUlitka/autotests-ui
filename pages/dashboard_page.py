@@ -19,3 +19,4 @@ class DashboardPage(BasePage):
 
     def check_dashboard_header(self):
         expect(self.dashboard_header).to_be_visible()
+        expect(self.dashboard_header).to_have_text('Dashboard')
