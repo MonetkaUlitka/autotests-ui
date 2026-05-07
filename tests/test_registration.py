@@ -10,7 +10,7 @@ def test_successful_registration(registration_page:RegistationPage, dashboard_pa
 
     registration_page.fill_registration_form(email='ra123@gmail.com', username="SomeUser", password='helloWorld')
     registration_page.click_registration_button()
-    dashboard_page.check_dashboard_header()
+    dashboard_page.check_visible_dashboard_title()
 
 # @pytest.mark.smoke
 # def test_disabled_registration_button(page:Page):
