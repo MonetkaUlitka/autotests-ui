@@ -7,12 +7,13 @@ class CoursesListPage(BasePage):
         super().__init__(page)
 
         #Заголовок и кнопка создания курса
-        self.courses_title = page.get_by_test_id('courses-list-toolbar-title-text')
+        self.courses_title = page.get_by_test_id('courses-list-toolbar-title-text') 
         self.courses_button = page.get_by_test_id('courses-list-toolbar-create-course-button')
 
         # Карточка курса 
-        self.course_title = page.get_by_test_id('course-widget-title-text')
+        # self.create_course_title = page.get_by_test_id('create-course-toolbar-title-text')
         self.course_image = page.get_by_test_id('course-preview-image')
+        self.course_title = page.get_by_test_id('course-widget-title-text')
 
         self.course_max_text = page.get_by_test_id('course-max-score-info-row-view-text')
         self.course_max_icon = page.get_by_test_id('KeyboardDoubleArrowUpIcon')
@@ -68,13 +69,13 @@ class CoursesListPage(BasePage):
         expect(self.course_title.nth(index)).to_have_text(title)
 
         expect(self.course_max_text.nth(index)).to_be_visible()
-        expect(self.course_max_text.nth(index)).to_have_text(f"Max score:{max_score}")
+        expect(self.course_max_text.nth(index)).to_have_text(f"Max score: {max_score}")
 
         expect(self.course_min_text.nth(index)).to_be_visible()
-        expect(self.course_min_text.nth(index)).to_have_text(f"Min score:{min_score}")
+        expect(self.course_min_text.nth(index)).to_have_text(f"Min score: {min_score}")
 
         expect(self.course_estimated_time_text.nth(index)).to_be_visible()
-        expect(self.course_estimated_time_text.nth(index)).to_have_text(f"Estimated time:{estimated_time}")
+        expect(self.course_estimated_time_text.nth(index)).to_have_text(f"Estimated time: {estimated_time}")
 
     def click_edit_course_button(self, index:int):
         self.course_menu_button.nth(index).click()
