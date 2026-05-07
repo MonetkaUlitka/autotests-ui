@@ -17,7 +17,7 @@ class CreateCoursePage(BasePage):
         self.upload_image_icon = page.get_by_test_id('create-course-preview-image-upload-widget-info-icon')
         self.upload_image_title = page.get_by_test_id('create-course-preview-image-upload-widget-info-title-text')
         self.upload_image_description = page.get_by_test_id('create-course-preview-image-upload-widget-info-description-text')
-        self.upload_image_button = page.get_by_test_id('create-course-preview-image-upload-widget-upload-button')
+        self.upload_image_button = page.get_by_test_id('create-course-preview-image-upload-widget-upload-button').locator('input[type="file"]')
 
 
 # Блок загрузки изображения для превью курса: картинка курса выбрана
@@ -43,7 +43,7 @@ class CreateCoursePage(BasePage):
 #         self.exercises_subtitle = page.get_by_test_id('create-course-exercise-0-box-toolbar-subtitle-text')
 #         self.exercise_title_input = page.get_by_test_id('create-course-exercise-form-title-0-input').locator('input')
 #         self.empty_exercise_description_input = page.get_by_test_id('create-course-exercise-form-description-0-input').locator('input')
-#         self.delete_exercise_button = page.get_by_test_id('create-course-exercise-0-box-toolbar-delete-exercise-button')
+        self.delete_exercise_button = page.get_by_test_id('create-course-exercise-0-box-toolbar-delete-exercise-button')
 
 
     def check_visible_create_course_title(self):
@@ -81,18 +81,24 @@ class CreateCoursePage(BasePage):
         expect(self.upload_image_button).to_be_visible()
 
     def check_visible_image_upload_view(self,is_image_uploaded:bool = False):
-        expect(self.preview_empty_view_icon).to_be_visible()
-
         expect(self.upload_image_title).to_be_visible()
         expect(self.upload_image_title).to_have_text('Tap on "Upload image" button to select file')
 
         expect(self.upload_image_description).to_be_visible()
-        expect(self.upload_image_description).to_contain_text('Recommended file size 540X300')
+        expect(self.upload_image_description).to_have_text('Recommended file size 540X300')
 
         expect(self.upload_image_button).to_be_visible()
 
         if is_image_uploaded:
+            expect(self.preview_empty_view_icon).not_to_be_visible()
+            expect(self.uploaded_course_image).to_be_visible()
             expect(self.remove_uploaded_course_image_button).to_be_visible()
+        else:
+            expect(self.preview_empty_view_icon).to_be_visible()
+            expect(self.preview_empty_image_title).to_be_visible()
+            expect(self.preview_empty_image_title).to_have_text('No image selected')
+            expect(self.preview_empty_view_description).to_be_visible()
+            expect(self.preview_empty_view_description).to_have_text('Preview of selected image will be displayed here')
 
 
     def click_remove_image_button(self):
@@ -152,7 +158,7 @@ class CreateCoursePage(BasePage):
     def check_visible_exercises_empty_view(self):
         expect(self.empty_exercise_view_icon).to_be_visible()
 
-        expect(self.empty-self.empty_exercise_view_title).to_be_visible()
+        expect(self.empty_exercise_view_title).to_be_visible()
         expect(self.empty_exercise_view_title).to_have_text('There is no exercises')
 
         expect(self.empty_exercise_view_description).to_be_visible()
