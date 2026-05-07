@@ -24,3 +24,25 @@ class DashboardPage(BasePage):
     def check_visible_dashboard_title(self):
         expect(self.dashboard_title).to_be_visible()
         expect(self.dashboard_title).to_have_text('Dashboard')
+
+    def check_visible_student_title(self):
+        expect(self.student_title).to_be_visible()
+        expect(self.student_title).to_have_text('Students')
+        expect(self.student_chart).to_be_visible()
+
+    def check_visible_activities_title(self):
+        expect(self.activities_title).to_be_visible()
+        expect(self.activities_title).to_have_text('Activities')
+        expect(self.activities_chart).to_be_visible()
+
+    def check_visible_courses_title(self):
+        expect(self.courses_title).to_be_visible()
+        expect(self.courses_title).to_have_text('Courses')
+        expect(self.courses_chart).to_be_visible()
+
+    def check_visible_scores_title(self):
+        expect(self.scores_title).to_be_visible()
+        expect(self.scores_title).to_have_text('Scores')
+        expect(self.scores_chart).to_be_visible()
+
+    
