@@ -125,10 +125,19 @@ class CreateCoursePage(BasePage):
 
     def fill_create_course_form(self, title:str, estimated_time:str, description:str, max_score:str, min_score:str):
         self.course_title_input.fill(title)
+        expect(self.course_title_input).to_have_value(title)
+
         self.course_estimated_time_input.fill(estimated_time)
+        expect(self.course_estimated_time_input).to_have_value(estimated_time)
+
         self.course_description_textarea.fill(description)
+        expect(self.course_description_textarea).to_have_value(description)
+
         self.course_max_score_input.fill(max_score)
+        expect(self.course_max_score_input).to_have_value(max_score)
+
         self.course_min_score_input.fill(min_score)
+        expect(self.course_min_score_input).to_have_value(min_score)
 
     def check_visible_exercises_title(self):
         expect(self.exercises_title).to_be_visible()
