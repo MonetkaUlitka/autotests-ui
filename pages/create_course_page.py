@@ -72,15 +72,13 @@ class CreateCoursePage(BasePage):
         expect(self.upload_image_button).to_be_visible()
 
         if is_image_uploaded:
-            expect(self.preview_empty_view_icon).not_to_be_visible()
             expect(self.uploaded_course_image).to_be_visible()
             expect(self.remove_uploaded_course_image_button).to_be_visible()
         else:
-            expect(self.preview_empty_view_icon).to_be_visible()
-            expect(self.preview_empty_image_title).to_be_visible()
-            expect(self.preview_empty_image_title).to_have_text('No image selected')
-            expect(self.preview_empty_view_description).to_be_visible()
-            expect(self.preview_empty_view_description).to_have_text('Preview of selected image will be displayed here')
+            self.preview_empty_view.check_visible(
+            title='No image selected',
+            description='Preview of selected image will be displayed here'
+        )
 
 
     def click_remove_image_button(self):
@@ -95,7 +93,7 @@ class CreateCoursePage(BasePage):
         self.upload_image_button.set_input_files(file)
 
 
-    def check_visible_create_course_form(self, title: str, estimated_time: str, description: str, max_score: int, min_score: int):
+    def check_visible_create_course_form(self, title: str, estimated_time: str, description: str, max_score: str, min_score: str):
         expect(self.course_title_input).to_be_visible()
         expect(self.course_title_input).to_have_value(title)
 
@@ -143,8 +141,11 @@ class CreateCoursePage(BasePage):
             description = 'Click on "Create exercise" button to create new exercise'
         )
 
+
     def click_delete_exercise_button(self, index:int):
-        self.delete_exercise_button.nth(index).click()
+        delete_button = self.page.get_by_test_id(f"create-course-exercise-{index}-box-toolbar-delete-exercise-button")
+        expect(delete_button).to_be_visible()
+        delete_button.click()
 
 # Посмотреть код и повторить. Нужно разобраться почему я не смогла это сделать - чего мне не хватило для понимания.
 
