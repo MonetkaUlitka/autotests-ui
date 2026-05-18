@@ -57,23 +57,10 @@ class CreateCoursePage(BasePage):
         expect(self.create_course_button).to_be_disabled()
 
     def check_visible_image_preview_empty_view(self):
-        expect(self.preview_empty_view_icon).to_be_visible()
-
-        expect(self.preview_empty_image_title).to_be_visible()
-        expect(self.preview_empty_image_title).to_have_text('No image selected')
-
-        expect(self.preview_empty_view_description).to_be_visible()
-        expect(self.preview_empty_view_description).to_have_text('Preview of selected image will be displayed here')
-
-        expect(self.upload_image_icon).to_be_visible()
-
-        expect(self.upload_image_title).to_be_visible()
-        expect(self.upload_image_title).to_have_text('Tap on "Upload image" button to select file')
-
-        expect(self.upload_image_description).to_be_visible()
-        expect(self.upload_image_description).to_contain_text('Recommended file size 540X300')
-
-        expect(self.upload_image_button).to_be_visible()
+        self.preview_empty_view.check_visible(
+            title = 'No image selected',
+            description = 'Preview of selected image will be displayed here'
+        )
 
     def check_visible_image_upload_view(self,is_image_uploaded:bool = False):
         expect(self.upload_image_title).to_be_visible()
