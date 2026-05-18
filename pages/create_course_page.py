@@ -138,13 +138,10 @@ class CreateCoursePage(BasePage):
         self.add_exercise_button.click()
 
     def check_visible_exercises_empty_view(self):
-        expect(self.empty_exercise_view_icon).to_be_visible()
-
-        expect(self.empty_exercise_view_title).to_be_visible()
-        expect(self.empty_exercise_view_title).to_have_text('There is no exercises')
-
-        expect(self.empty_exercise_view_description).to_be_visible()
-        expect(self.empty_exercise_view_description).to_have_text('Click on "Create exercise" button to create new exercise')
+        self.exercises_empty_view.check_visible(
+            title = 'There is no exercises',
+            description = 'Click on "Create exercise" button to create new exercise'
+        )
 
     def click_delete_exercise_button(self, index:int):
         self.delete_exercise_button.nth(index).click()
