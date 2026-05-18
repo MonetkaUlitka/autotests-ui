@@ -1,19 +1,18 @@
 from playwright.sync_api import Page, expect
 from pages.base_page import BasePage
+from components.views.empty_view_compoments import EmptyViewComponent
 
 
 class CreateCoursePage(BasePage):
     def __init__(self, page:Page):
         super().__init__(page)
+        self.preview_empty_view = EmptyViewComponent(page, identifier='create-course-preview')
+        self.exercises_empty_view = EmptyViewComponent(page, identifier='create-course-exercises')
 
         self.create_course_title = page.get_by_test_id('create-course-toolbar-title-text')
         self.create_course_button = page.get_by_test_id('create-course-toolbar-create-course-button')
 
 # Блок загрузки изображения для превью курса: картинка курса не выбрана
-        self.preview_empty_view_icon = page.get_by_test_id('create-course-preview-empty-view-icon')
-        self.preview_empty_image_title = page.get_by_test_id('create-course-preview-empty-view-title-text')
-        self.preview_empty_view_description = page.get_by_test_id('create-course-preview-empty-view-description-text')
-
         self.upload_image_icon = page.get_by_test_id('create-course-preview-image-upload-widget-info-icon')
         self.upload_image_title = page.get_by_test_id('create-course-preview-image-upload-widget-info-title-text')
         self.upload_image_description = page.get_by_test_id('create-course-preview-image-upload-widget-info-description-text')
@@ -34,10 +33,6 @@ class CreateCoursePage(BasePage):
 # Блок с добавление упражнений в курс: упражнения не добавлены
         self.exercises_title = page.get_by_test_id('create-course-exercises-box-toolbar-title-text')
         self.add_exercise_button = page.get_by_test_id('create-course-exercises-box-toolbar-create-exercise-button')
-      
-        self.empty_exercise_view_icon = page.get_by_test_id('create-course-exercises-empty-view-icon')
-        self.empty_exercise_view_title = page.get_by_test_id('create-course-exercises-empty-view-title-text')
-        self.empty_exercise_view_description = page.get_by_test_id('create-course-exercises-empty-view-description-text')
 
 # # Блок с добавление упражнений в курс: упражнения добавлены
 #         self.exercises_subtitle = page.get_by_test_id('create-course-exercise-0-box-toolbar-subtitle-text')
