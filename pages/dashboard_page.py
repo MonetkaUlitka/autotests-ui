@@ -16,8 +16,8 @@ class DashboardPage(BasePage):
         
         self.students_chart_view = ChartViewComponent(page, identifier="students", chart_type="bar")
         self.activities_chart_view = ChartViewComponent(page, identifier="activities", chart_type="line")
-        self.scores_chart_view = ChartViewComponent(page, identifier="scores", chart_type="pie")
-        self.courses_chart_view = ChartViewComponent(page, identifier="courses", chart_type="scatter")
+        self.scores_chart_view = ChartViewComponent(page, identifier="scores", chart_type="scatter")
+        self.courses_chart_view = ChartViewComponent(page, identifier="courses", chart_type="pie")
 
 
         self.dashboard_button = page.get_by_test_id('dashboard-drawer-list-item-button')
