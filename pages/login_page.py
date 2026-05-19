@@ -6,7 +6,7 @@ from components.authentication.login_form_component import LoginFormComponent
 class LoginPage(BasePage):
     def __init__(self, page:Page):
         super().__init__(page)
-        login_form = LoginFormComponent(page)
+        self.login_form = LoginFormComponent(page)
 
         self.login_button = page.get_by_test_id('login-page-login-button')
         self.registration_link = page.get_by_test_id('login-page-registration-link')
