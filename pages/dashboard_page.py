@@ -2,6 +2,8 @@ from playwright.sync_api import Page, expect
 from pages.base_page import BasePage
 from components.navigation.navbar_component import NavbarComponent
 from components.navigation.sidebar_component import SidebarComponent
+from components.dashboard.dashboard_toolbar_view_component import DashboardToolbarViewComponent
+from components.charts.chart_view_component import ChartViewComponent
 
 
 class DashboardPage(BasePage):
@@ -10,44 +12,14 @@ class DashboardPage(BasePage):
 
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
+        self.dashboard_toolbar = DashboardToolbarViewComponent(page)
+        
+        self.students_chart_view = ChartViewComponent(identifier="students", chart_type="bar")
+        self.activities_chart_view = ChartViewComponent(identifier="activities", chart_type="line")
+        self.scores_chart_view = ChartViewComponent(identifier="scores", chart_type="pie")
+        self.courses_chart_view = ChartViewComponent(identifier="courses", chart_type="scatter")
 
-        self.dashboard_title = page.get_by_test_id('dashboard-toolbar-title-text')
+
         self.dashboard_button = page.get_by_test_id('dashboard-drawer-list-item-button')
-
-        self.student_title = page.get_by_test_id('students-widget-title-text')
-        self.student_chart = page.get_by_test_id('students-bar-chart')
-
-        self.activities_title = page.get_by_test_id('activities-widget-title-text')
-        self.activities_chart = page.get_by_test_id('activities-line-chart')
-
-        self.courses_title = page.get_by_test_id('courses-widget-title-text')
-        self.courses_chart = page.get_by_test_id('courses-pie-chart')
-
-        self.scores_title = page.get_by_test_id('scores-widget-title-text')
-        self.scores_chart = page.get_by_test_id('scores-scatter-chart')
-
-    def check_visible_dashboard_title(self):
-        expect(self.dashboard_title).to_be_visible()
-        expect(self.dashboard_title).to_have_text('Dashboard')
-
-    def check_visible_student_title(self):
-        expect(self.student_title).to_be_visible()
-        expect(self.student_title).to_have_text('Students')
-        expect(self.student_chart).to_be_visible()
-
-    def check_visible_activities_title(self):
-        expect(self.activities_title).to_be_visible()
-        expect(self.activities_title).to_have_text('Activities')
-        expect(self.activities_chart).to_be_visible()
-
-    def check_visible_courses_title(self):
-        expect(self.courses_title).to_be_visible()
-        expect(self.courses_title).to_have_text('Courses')
-        expect(self.courses_chart).to_be_visible()
-
-    def check_visible_scores_title(self):
-        expect(self.scores_title).to_be_visible()
-        expect(self.scores_title).to_have_text('Scores')
-        expect(self.scores_chart).to_be_visible()
 
     
