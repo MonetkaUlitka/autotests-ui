@@ -14,10 +14,10 @@ class DashboardPage(BasePage):
         self.sidebar = SidebarComponent(page)
         self.dashboard_toolbar = DashboardToolbarViewComponent(page)
         
-        self.students_chart_view = ChartViewComponent(identifier="students", chart_type="bar")
-        self.activities_chart_view = ChartViewComponent(identifier="activities", chart_type="line")
-        self.scores_chart_view = ChartViewComponent(identifier="scores", chart_type="pie")
-        self.courses_chart_view = ChartViewComponent(identifier="courses", chart_type="scatter")
+        self.students_chart_view = ChartViewComponent(page, identifier="students", chart_type="bar")
+        self.activities_chart_view = ChartViewComponent(page, identifier="activities", chart_type="line")
+        self.scores_chart_view = ChartViewComponent(page, identifier="scores", chart_type="pie")
+        self.courses_chart_view = ChartViewComponent(page, identifier="courses", chart_type="scatter")
 
 
         self.dashboard_button = page.get_by_test_id('dashboard-drawer-list-item-button')
