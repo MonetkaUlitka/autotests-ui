@@ -4,6 +4,7 @@ from components.navigation.sidebar_component import SidebarComponent
 from components.navigation.navbar_component import NavbarComponent
 from components.views.empty_view_compoments import EmptyViewComponent
 from components.courses.course_view_component import CourseViewComponent
+from components.courses.courses_list_toolbar_view_component import CoursesListToolbarViewComponent
 
 
 class CoursesListPage(BasePage):
@@ -13,12 +14,8 @@ class CoursesListPage(BasePage):
         self.navbar = NavbarComponent(page)
         self.empty_view = EmptyViewComponent(page, identifier= 'courses-list')
         self.course_view = CourseViewComponent(page)
-
-        #Заголовок и кнопка создания курса
-        self.courses_title = page.get_by_test_id('courses-list-toolbar-title-text') 
-        self.courses_button = page.get_by_test_id('courses-list-toolbar-create-course-button')
-
-
+        self.toolbar_view = CoursesListToolbarViewComponent(page)
+      
     def check_visible_courses_title(self):
         expect(self.courses_title).to_be_visible()
         expect(self.courses_title).to_have_text('Courses')
