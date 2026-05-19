@@ -16,10 +16,6 @@ class CoursesListPage(BasePage):
         self.course_view = CourseViewComponent(page)
         self.toolbar_view = CoursesListToolbarViewComponent(page)
       
-    def check_visible_courses_title(self):
-        expect(self.courses_title).to_be_visible()
-        expect(self.courses_title).to_have_text('Courses')
-
     def check_visible_empty_view(self):
         self.empty_view.check_visible(
         title = 'There is no results',
@@ -30,8 +26,6 @@ class CoursesListPage(BasePage):
         expect(self.courses_button).to_be_visible()
         
 
-    def click_create_course_button(self):
-        self.courses_button.click()
 
 
     
