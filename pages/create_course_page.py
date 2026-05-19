@@ -2,14 +2,15 @@ from playwright.sync_api import Page, expect
 from pages.base_page import BasePage
 from components.views.empty_view_compoments import EmptyViewComponent
 from components.views.image_upload_widget_component import ImageUploadWidgetComponent
+from components.courses.create_course_exercise_form_component import CreateCourseExerciseFormComponent
 
 
 class CreateCoursePage(BasePage):
     def __init__(self, page:Page):
         super().__init__(page)
         self.image_upload_widget = ImageUploadWidgetComponent(page, identifier='create-course-preview')
-        self.preview_empty_view = EmptyViewComponent(page, identifier='create-course-preview')
         self.exercises_empty_view = EmptyViewComponent(page, identifier='create-course-exercises')
+        self.create_exercise_form = CreateCourseExerciseFormComponent(page)
 
         self.create_course_title = page.get_by_test_id('create-course-toolbar-title-text')
         self.create_course_button = page.get_by_test_id('create-course-toolbar-create-course-button')
@@ -26,10 +27,6 @@ class CreateCoursePage(BasePage):
         self.exercises_title = page.get_by_test_id('create-course-exercises-box-toolbar-title-text')
         self.add_exercise_button = page.get_by_test_id('create-course-exercises-box-toolbar-create-exercise-button')
 
-# # Блок с добавление упражнений в курс: упражнения добавлены
-#         self.exercises_subtitle = page.get_by_test_id('create-course-exercise-0-box-toolbar-subtitle-text')
-#         self.exercise_title_input = page.get_by_test_id('create-course-exercise-form-title-0-input').locator('input')
-#         self.empty_exercise_description_input = page.get_by_test_id('create-course-exercise-form-description-0-input').locator('input')
         self.delete_exercise_button = page.get_by_test_id('create-course-exercise-0-box-toolbar-delete-exercise-button')
 
 
@@ -47,12 +44,6 @@ class CreateCoursePage(BasePage):
 
     def check_disabled_create_course_button(self):
         expect(self.create_course_button).to_be_disabled()
-
-    def check_visible_image_preview_empty_view(self):
-        self.preview_empty_view.check_visible(
-            title = 'No image selected',
-            description = 'Preview of selected image will be displayed here'
-        )
 
     def check_visible_create_course_form(self, title: str, estimated_time: str, description: str, max_score: str, min_score: str):
         expect(self.course_title_input).to_be_visible()
@@ -108,39 +99,6 @@ class CreateCoursePage(BasePage):
         expect(delete_button).to_be_visible()
         delete_button.click()
 
-# Посмотреть код и повторить. Нужно разобраться почему я не смогла это сделать - чего мне не хватило для понимания.
-
-    def check_visible_create_exercise_form(self, index: int, title: str, description: str):
-        exercise_subtitle = self.page.get_by_test_id(
-            f"create-course-exercise-{index}-box-toolbar-subtitle-text"
-        )
-        exercise_title_input = self.page.get_by_test_id(
-            f"create-course-exercise-form-title-{index}-input"
-        )
-        exercise_description_input = self.page.get_by_test_id(
-            f"create-course-exercise-form-description-{index}-input"
-        )
-
-        expect(exercise_subtitle).to_be_visible()
-        expect(exercise_subtitle).to_have_text(f"#{index + 1} Exercise")
-
-        expect(exercise_title_input).to_be_visible()
-        expect(exercise_title_input).to_have_value(title)
-
-        expect(exercise_description_input).to_be_visible()
-        expect(exercise_description_input).to_have_value(description)
-
-
-    def fill_create_exercise_form(self, index:int, title:str, description:str):
-        exercise_title_input = self.page.get_by_test_id(
-            f"create-course-exercise-form-title-{index}-input"
-        )
-        exercise_description_input = self.page.get_by_test_id(
-            f"create-course-exercise-form-description-{index}-input"
-        )
-
-        exercise_title_input.fill(title)
-        exercise_description_input.fill(description)
 
 
     
