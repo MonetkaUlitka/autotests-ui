@@ -16,15 +16,12 @@ class CoursesListPage(BasePage):
         self.course_view = CourseViewComponent(page)
         self.toolbar_view = CoursesListToolbarViewComponent(page)
       
+
     def check_visible_empty_view(self):
         self.empty_view.check_visible(
         title = 'There is no results',
         description = 'Results from the load test pipeline will be displayed here'
         )
-
-    def check_visible_create_course_button(self):
-        expect(self.courses_button).to_be_visible()
-        
 
 
 
