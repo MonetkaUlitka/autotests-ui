@@ -12,8 +12,7 @@ def test_empty_courses_list(courses_list_page: CoursesListPage):
     courses_list_page.sidebar.check_visible()
     courses_list_page.empty_view.check_visible(title = 'There is no results', description ='Results from the load test pipeline will be displayed here')
 
-    courses_list_page.check_visible_courses_title()
-    courses_list_page.check_visible_create_course_button()
+    courses_list_page.toolbar_view.check_visible()
     
     
 
