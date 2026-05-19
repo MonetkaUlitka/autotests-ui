@@ -3,7 +3,7 @@ from components.base_component import BaseComponent
 
 
 class CreateCourseExerciseFormComponent(BaseComponent):
-    def click_deletr_button(self, index):
+    def click_delete_button(self, index):
         delete_button = self.page.get_by_test_id( f"create-course-exercise-{index}-box-toolbar-delete-exercise-button")
         delete_button.click()
 
