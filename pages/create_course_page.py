@@ -1,27 +1,19 @@
 from playwright.sync_api import Page, expect
 from pages.base_page import BasePage
 from components.views.empty_view_compoments import EmptyViewComponent
+from components.views.image_upload_widget_component import ImageUploadWidgetComponent
 
 
 class CreateCoursePage(BasePage):
     def __init__(self, page:Page):
         super().__init__(page)
+        self.image_upload_widget = ImageUploadWidgetComponent(page, identifier='create-course-preview')
         self.preview_empty_view = EmptyViewComponent(page, identifier='create-course-preview')
         self.exercises_empty_view = EmptyViewComponent(page, identifier='create-course-exercises')
 
         self.create_course_title = page.get_by_test_id('create-course-toolbar-title-text')
         self.create_course_button = page.get_by_test_id('create-course-toolbar-create-course-button')
-
-# Блок загрузки изображения для превью курса: картинка курса не выбрана
-        self.upload_image_icon = page.get_by_test_id('create-course-preview-image-upload-widget-info-icon')
-        self.upload_image_title = page.get_by_test_id('create-course-preview-image-upload-widget-info-title-text')
-        self.upload_image_description = page.get_by_test_id('create-course-preview-image-upload-widget-info-description-text')
-        self.upload_image_button = page.get_by_test_id('create-course-preview-image-upload-widget-upload-button').locator('input[type="file"]')
-
-
-# Блок загрузки изображения для превью курса: картинка курса выбрана
-        self.uploaded_course_image = page.get_by_test_id('create-course-preview-image-upload-widget-preview-image')
-        self.remove_uploaded_course_image_button = page.get_by_test_id('create-course-preview-image-upload-widget-remove-button')
+       
 
 # Блок с полями для создания курса
         self.course_title_input = page.get_by_test_id('create-course-form-title-input').locator('input')
@@ -61,37 +53,6 @@ class CreateCoursePage(BasePage):
             title = 'No image selected',
             description = 'Preview of selected image will be displayed here'
         )
-
-    def check_visible_image_upload_view(self,is_image_uploaded:bool = False):
-        expect(self.upload_image_title).to_be_visible()
-        expect(self.upload_image_title).to_have_text('Tap on "Upload image" button to select file')
-
-        expect(self.upload_image_description).to_be_visible()
-        expect(self.upload_image_description).to_have_text('Recommended file size 540X300')
-
-        expect(self.upload_image_button).to_be_visible()
-
-        if is_image_uploaded:
-            expect(self.uploaded_course_image).to_be_visible()
-            expect(self.remove_uploaded_course_image_button).to_be_visible()
-        else:
-            self.preview_empty_view.check_visible(
-            title='No image selected',
-            description='Preview of selected image will be displayed here'
-        )
-
-
-    def click_remove_image_button(self):
-        expect(self.remove_uploaded_course_image_button).to_be_visible()
-        self.remove_uploaded_course_image_button.click()
-
-    def check_visible_preview_image(self):
-        expect(self.uploaded_course_image).to_be_visible()
-
-    def upload_preview_image(self, file:str):
-        expect(self.upload_image_button).to_be_visible()
-        self.upload_image_button.set_input_files(file)
-
 
     def check_visible_create_course_form(self, title: str, estimated_time: str, description: str, max_score: str, min_score: str):
         expect(self.course_title_input).to_be_visible()
