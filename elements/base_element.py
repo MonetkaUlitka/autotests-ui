@@ -26,3 +26,7 @@ class BaseElement:
     def check_text(self, text: str, **kwargs):
         locator = self.get_locator(**kwargs)
         expect(locator).to_have_text(text)
+
+    def link_hover(self, **kwargs):
+        locator = self.get_locator(**kwargs)
+        locator.hover()
