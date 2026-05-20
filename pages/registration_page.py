@@ -5,7 +5,7 @@ from components.authentication.registration_form_component import RegistrationFo
 class RegistationPage(BasePage):
     def __init__(self, page:Page):
         super().__init__(page)
-        registration_form = RegistrationFormComponent(page)
+        self.registration_form = RegistrationFormComponent(page)
 
         self.login_link = page.get_by_test_id('registration-page-login-link')
         self.registration_button = page.get_by_test_id('registration-page-registration-button')
