@@ -1,40 +1,18 @@
 from playwright.sync_api import Page, expect 
 import pytest
-
-# Запуск Playwright в синхронном режиме
+from pages.login_page import LoginPage
 
 @pytest.mark.regression
-def test_login_error(page: Page): 
-    # # Открываем браузер Chromium (не в headless режиме, чтобы видеть действия)
-    # browser = playwright.chromium.launch(headless=False)
-    # page = browser.new_page()  # Создаем новую страницу
+def test_login_error(login_page:LoginPage, email:str, password:str): 
+    login_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login")
 
-    # Переходим на страницу авторизации
-    page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login")
+    login_page.login_form.fill(email='user.name@gmail.com', password='password')
 
-    # Находим поле "Email" и заполняем его
-    email_input = page.get_by_test_id('login-form-email-input').locator('input')
-    email_input.fill("user.name@gmail.com")
+    login_page.click_login_button()
 
-    # Находим поле "Password" и заполняем его
-    password_input = page.get_by_test_id('login-form-password-input').locator('input')
-    password_input.fill("password")
-
-    # Находим кнопку "Login" и кликаем на нее
-    login_button = page.get_by_test_id('login-page-login-button')
-    login_button.click()
-
-    # Проверяем, что появилось сообщение об ошибке
-    wrong_email_or_password_alert = page.get_by_test_id('login-page-wrong-email-or-password-alert')
-    expect(wrong_email_or_password_alert).to_be_visible()  # Проверяем видимость элемента
-    expect(wrong_email_or_password_alert).to_have_text("Wrong email or password")  # Проверяем текст
-
-    # Пауза на 5 секунд, чтобы увидеть результат
-    # page.wait_for_timeout(5000)
+    login_page.check_visible_wrong_email_or_password()
 
 @pytest.mark.smoke
-def test_hover_registration_link(page:Page):
-    page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login")
-
-    registrstion_link = page.get_by_test_id('login-page-registration-link')
-    registrstion_link.hover()
+def test_hover_registration_link(login_page:LoginPage):
+    login_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login")
+    login_page.registration_link.link_hover()
