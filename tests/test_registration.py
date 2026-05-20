@@ -8,9 +8,9 @@ from pages.dashboard_page import DashboardPage
 def test_successful_registration(registration_page:RegistationPage, dashboard_page: DashboardPage):
     registration_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration")
 
-    registration_page.fill_registration_form(email='ra123@gmail.com', username="SomeUser", password='helloWorld')
+    registration_page.registration_form.fill(email='ra123@gmail.com', username="SomeUser", password='helloWorld')
     registration_page.click_registration_button()
-    dashboard_page.check_visible_dashboard_title()
+    dashboard_page.dashboard_toolbar.check_visible() 
 
 # @pytest.mark.smoke
 # def test_disabled_registration_button(page:Page):
