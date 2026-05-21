@@ -28,10 +28,10 @@ class ImageUploadWidgetComponent(BaseComponent):
         self.image_upload_info_icon.check_visible()
         
         self.image_upload_info_title.check_visible()
-        self.image_upload_info_title.check_text('Tap on "Upload image" button to select file')
+        self.image_upload_info_title.check_have_text('Tap on "Upload image" button to select file')
 
         self.image_upload_info_description.check_visible()
-        self.image_upload_info_description.check_text('Recommended file size 540X300')
+        self.image_upload_info_description.check_have_text('Recommended file size 540X300')
         
         self.upload_button.check_visible()
 

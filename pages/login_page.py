@@ -23,7 +23,7 @@ class LoginPage(BasePage):
 
     def check_visible_wrong_email_or_password(self):
         self.wrong_email_or_password_alert.check_visible()
-        self.wrong_email_or_password_alert.check_text("Wrong email or password")
+        self.wrong_email_or_password_alert.check_have_text("Wrong email or password")
     
 
          

@@ -27,7 +27,7 @@ class CourseViewComponent(BaseComponent):
 
 
         self.course_min_text.check_visible(nth = index)
-        self.course_min_text.check_have_text("Min score: {min_score}", nth = index)
+        self.course_min_text.check_have_text(f"Min score: {min_score}", nth = index)
 
         self.course_estimated_time_text.check_visible(nth = index)
         self.course_estimated_time_text.check_have_text(f"Estimated time: {estimated_time}", nth = index)

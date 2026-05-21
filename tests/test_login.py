@@ -3,7 +3,7 @@ import pytest
 from pages.login_page import LoginPage
 
 @pytest.mark.regression
-def test_login_error(login_page:LoginPage, email:str, password:str): 
+def test_login_error(login_page:LoginPage): 
     login_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login")
 
     login_page.login_form.fill(email='user.name@gmail.com', password='password')
