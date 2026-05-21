@@ -15,10 +15,10 @@ class EmptyViewComponent(BaseComponent):
         self.icon.check_visible()
         
         self.title.check_visible()
-        self.title.check_text(title)
+        self.title.check_have_text(title)
 
         self.description.check_visible()
-        self.description.check_text(description)
+        self.description.check_have_text(description)
 
 
         

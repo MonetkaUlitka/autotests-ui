@@ -12,6 +12,6 @@ class ChartViewComponent(BaseComponent):
 
     def check_visible(self, expected_title:str):
         self.title.check_visible()
-        self.title.check_text(expected_title)
+        self.title.check_have_text(expected_title)
 
         self.chart.check_visible()

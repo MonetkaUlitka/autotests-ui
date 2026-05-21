@@ -17,7 +17,7 @@ class SidebarListItemComponent(BaseComponent):
         self.icon.check_visible()
         
         self.title.check_visible()
-        self.title.check_text(title)
+        self.title.check_have_text(title)
 
         self.button.check_visible()
 
